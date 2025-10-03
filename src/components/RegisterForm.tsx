@@ -1,16 +1,31 @@
 import { useState } from 'react';
+import { useAuth } from '../services/auth';
 
 export const RegisterForm = () => {
+    const authContext = useAuth();
+    const { register } = authContext;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [repassword, setRepassword] = useState('');
 
-    const registerSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    const registerSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (password !== repassword) {
             alert('Passwords do not match!');
             return;
+        }
+
+        let registerRes;
+        try {
+            registerRes = await register(username, password);
+            console.log('register successful:', registerRes);
+            // setInvalidLogin(false);
+            // redirect to /
+            window.location.href = '/';
+        } catch (error) {
+            console.error('Login failed:', error);
+            // setInvalidLogin(true);
         }
 
         console.log({ username, password, repassword });

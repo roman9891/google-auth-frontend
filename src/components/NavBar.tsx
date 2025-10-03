@@ -1,8 +1,10 @@
 // react nav bar component with tailwind css and logout button
 import { Link } from 'react-router-dom';
-import { logout } from '../services/auth';
+import { useAuth } from '../services/auth';
 
 export const NavBar = () => {
+    const { logout } = useAuth();
+
     const handleLogout = () => {
         logout();
         window.location.href = '/login'; // Redirect to login page after logout

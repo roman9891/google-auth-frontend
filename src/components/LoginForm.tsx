@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { login } from '../services/auth';
+import { useAuth } from '../services/auth';
+
+const API_URL = import.meta.env.VITE_BACKEND_API_URL;
 
 // In LoginForm.tsx
 interface LoginFormProps {
@@ -8,6 +10,7 @@ interface LoginFormProps {
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({ setIsLogin }) => {
+    const { login } = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [invalidLogin, setInvalidLogin] = useState(false);
@@ -66,7 +69,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ setIsLogin }) => {
                 Register
             </button>
             <a
-                href="http://localhost:3000/auth/google"
+                href={`${API_URL}/auth/google`}
                 className="w-full rounded-md bg-red-600 px-4 py-2 text-center font-semibold text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
             >
                 Sign in with Google
