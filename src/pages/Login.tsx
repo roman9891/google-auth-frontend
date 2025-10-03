@@ -1,7 +1,9 @@
-import { LoginBox } from "../components/LoginForm"
+import { LoginOrRegisterBox } from '../components/LoginOrRegisterBox';
 
 export const Login = () => {
-    return <div>
-        <LoginBox/>
-    </div>
-}
+    return (
+        <div>
+            <LoginOrRegisterBox />
+        </div>
+    );
+};
