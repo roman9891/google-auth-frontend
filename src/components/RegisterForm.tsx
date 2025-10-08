@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../services/auth';
 
 export const RegisterForm = () => {
-    const authContext = useAuth();
-    const { register } = authContext;
+    const { register } = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [repassword, setRepassword] = useState('');

@@ -10,9 +10,7 @@ interface Props {
 }
 
 export default function ProtectedRoute({ children }: Props) {
-    const authContext = useAuth();
-    const { getAuth } = authContext;
-    const auth = getAuth();
+    const auth = useAuth();
 
     if (noAuth) {
         return <>{children}</>;
